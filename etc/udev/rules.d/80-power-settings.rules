@@ -1,0 +1,11 @@
+#Smart Display Control
+SUBSYSTEM=="power_supply", ATTR{online}=="0", TAG+="systemd", ENV{SYSTEMD_WANTS}+="smart-display-control.service"
+SUBSYSTEM=="power_supply", ATTR{online}=="1", TAG+="systemd", ENV{SYSTEMD_WANTS}+="smart-display-control.service"
+
+#Key Board Control
+SUBSYSTEM=="power_supply", ATTR{online}=="0", RUN+="/usr/bin/brightnessctl --device='asus::kbd_backlight' set 0"
+SUBSYSTEM=="power_supply", ATTR{online}=="1", RUN+="/usr/bin/brightnessctl --device='asus::kbd_backlight' set 3"
+
+#Power Profile Control
+SUBSYSTEM=="power_supply", ATTR{online}=="0", RUN+="/usr/bin/powerprofilesctl set power-saver"
+SUBSYSTEM=="power_supply", ATTR{online}=="1", RUN+="/usr/bin/powerprofilesctl set balanced"

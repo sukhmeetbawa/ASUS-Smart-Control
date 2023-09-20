@@ -1,0 +1,11 @@
+[Unit]
+Description=Smart Display Control Service
+Requires=display-manager.service
+
+[Service]
+Type=simple
+User=sukhmeet
+ExecStart=/usr/bin/smart-display-control
+
+[Install]
+WantedBy=multi-user.target
